@@ -7,8 +7,11 @@ class Ui_MainWindow:
     fileInfo = None
     line=None
     def load(self):
-        cl=cloud(Ui_MainWindow.line,Ui_MainWindow.fileInfo)
-        cl.show()
+        try:
+            cl=cloud(Ui_MainWindow.line,Ui_MainWindow.fileInfo)
+            cl.show()
+        except BaseException as exp:
+            tkinter.messagebox.showinfo('提示',f'错误{exp}')
     def change(self):
         Ui_MainWindow.fileInfo = QFileDialog.getOpenFileName(None,"选择图片", "C:/Users/Administrator/Desktop/")[0]
         Ui_MainWindow.line=self.lineEdit.text()
