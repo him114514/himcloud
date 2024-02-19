@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="zhushen">
+    <file>zhushen.ico</file>
+  </qresource>
+</RCC>
