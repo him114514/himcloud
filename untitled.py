@@ -1,35 +1,16 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
-from matplotlib import pyplot 
-from wordcloud import WordCloud
-
-from PIL import Image
 from PyQt5.QtWidgets import QApplication, QFileDialog
-import threading
-
-class cloud:
-    def __init__(self,text,img):
-        self.mask = Image.open(img)
-        self.wordcloud = WordCloud(font_path='msyhbd.ttc', background_color="white", width=800, height=400,mask=self.mask)
-        self.w=text
-    def show(self):
-        self.wordcloud.generate(self.w)
-        pyplot.imshow(self.wordcloud, interpolation='bilinear')
-        pyplot.axis("off")
-        pyplot.show()
-
-def show():
-    infects= threading.Thread(target=Ui_MainWindow.show)
-    infects.start()
+import os
+from ciyun import *
 class Ui_MainWindow:
     fileInfo = None
     line=None
-    @classmethod
-    def show(cls):
+    def load(self):
         cl=cloud(Ui_MainWindow.line,Ui_MainWindow.fileInfo)
         cl.show()
     def change(self):
-        Ui_MainWindow.fileInfo = QFileDialog.getOpenFileName(None,"选择图片", "C:/Users/Administrator/Desktop/")
+        Ui_MainWindow.fileInfo = QFileDialog.getOpenFileName(None,"选择图片", "C:/Users/Administrator/Desktop/")[0]
         Ui_MainWindow.line=self.lineEdit.text()
     def setupUi(self, MainWindow):
         MainWindow.setFixedSize(632, 130)
@@ -62,7 +43,7 @@ class Ui_MainWindow:
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setGeometry(QtCore.QRect(510, 80, 101, 41))
         self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton_2.clicked.connect(show)
+        self.pushButton_2.clicked.connect(self.load)
 
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
         self.label_3.setGeometry(QtCore.QRect(230, 100, 231, 21))
@@ -96,3 +77,4 @@ if __name__ == '__main__':
     ex.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
