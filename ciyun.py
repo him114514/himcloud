@@ -16,8 +16,6 @@ class cloud:
         pyplot.show()
 
 
-cloud=cloud("ssslsjls","zhushen.ico")
-cloud.show()
+cl=cloud(input('请输入文本内容：\n'),input('请输入文件路径：\n'))
 
-        
-
+cl.show()
